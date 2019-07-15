@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "679090269490",
+    "firebase_url": "https://instagram-add15.firebaseio.com",
+    "project_id": "instagram-add15",
+    "storage_bucket": "instagram-add15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679090269490:android:179ca76889f0caec",
+        "android_client_info": {
+          "package_name": "tk.vamshiprasad.instagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679090269490-sdfbsqvak3ttbrgjj043t2jkto0htq5q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWpgu_T4HQmUOnagoIUt-SEFtw_xRPDwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679090269490-sdfbsqvak3ttbrgjj043t2jkto0htq5q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
