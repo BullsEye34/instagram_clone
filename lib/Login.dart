@@ -4,17 +4,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'home.dart';
 
-class NewScreen extends StatelessWidget {
+class NewScreen extends StatefulWidget {
+  @override
+  _NewScreenState createState() => _NewScreenState();
+}
+
+class _NewScreenState extends State<NewScreen> {
 
   TextEditingController _mailCon = new TextEditingController();
   TextEditingController _pwdCon = new TextEditingController();
-
   @override
   Widget build(BuildContext context) {
+
     void signIn() async{
       try{
         FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _mailCon.text, password: _pwdCon.text);
-        _navigateToNextScreen(context, maain(user: user));
+        _navigateToNextScreen(context, maain());
       }
       catch(e){
         print(e);
@@ -90,17 +95,16 @@ class NewScreen extends StatelessWidget {
         ),
       ),
     );
-  }
 
+  }
   void _navigateToNextScreen(BuildContext context, Widget n) {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => n),
     );
   }
-
-
 }
+
 
 /*
 try{

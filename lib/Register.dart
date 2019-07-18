@@ -4,27 +4,32 @@ import 'Login.dart';
 import 'home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+class Register extends StatefulWidget {
+  @override
+  _RegisterState createState() => _RegisterState();
+}
 
-class Register extends StatelessWidget {
-
-  TextEditingController _name = new TextEditingController();
-  TextEditingController _pwd = new TextEditingController();
-  TextEditingController _email = new TextEditingController();
-  TextEditingController _phone = new TextEditingController();
-
-
+class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController _name = new TextEditingController();
+    TextEditingController _pwd = new TextEditingController();
+    TextEditingController _email = new TextEditingController();
+    TextEditingController _phone = new TextEditingController();
 
-    void signUp() async{
-      try{
-        FirebaseUser user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email.text, password: _pwd.text);
-        await Firestore.instance.collection('users').document(user.uid).setData({
-          'name': _name.text,
-          'password': _pwd.text,
-          'email': _email.text,
-          'phone': _phone.text
-        });
+
+    void signUp() async {
+      try {
+        FirebaseUser user = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+            email: _email.text, password: _pwd.text);
+        await Firestore.instance.collection('users').document(user.uid).setData(
+            {
+              'name': _name.text,
+              'password': _pwd.text,
+              'email': _email.text,
+              'phone': _phone.text
+            });
         /*add({
           'name': _name.text,
           'password': _pwd.text,
@@ -32,9 +37,9 @@ class Register extends StatelessWidget {
           'phone': _phone.text
         });*/
         user.sendEmailVerification();
-        _navigateToNextScreen(context, maain(user: user));
+        _navigateToNextScreen(context, maain());
       }
-      catch(e){
+      catch (e) {
         print(e);
       }
     }
@@ -44,7 +49,7 @@ class Register extends StatelessWidget {
         title: Text("Register", style: TextStyle(color: Colors.black)
         ),
         backgroundColor: Colors.white,),
-      body:Center(
+      body: Center(
         child: Wrap(
           children: <Widget>[
             Column(
@@ -54,7 +59,8 @@ class Register extends StatelessWidget {
                   child: Image.asset('images/instagram.png'),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 30.0, right: 30.0, top: 8.0),
+                  padding: const EdgeInsets.only(
+                      left: 30.0, right: 30.0, top: 8.0),
                   child: TextField(
                     keyboardType: TextInputType.text,
                     controller: _name,
@@ -123,11 +129,12 @@ class Register extends StatelessWidget {
                     )
                 ),
                 Padding(
-                  padding: EdgeInsets.all(50.0),
-                  child:InkWell(
-                    child: Text("Already Have an account? Click Here"), onTap: () {
-                    _navigateToNextScreen(context, NewScreen());
-                  },)
+                    padding: EdgeInsets.all(50.0),
+                    child: InkWell(
+                      child: Text("Already Have an account? Click Here"),
+                      onTap: () {
+                        _navigateToNextScreen(context, NewScreen());
+                      },)
                 )
               ],
             )
