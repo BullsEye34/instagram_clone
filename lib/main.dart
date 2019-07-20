@@ -39,7 +39,7 @@ class __TryState extends State<_Try> {
               return maain();
             }
             else{
-              return NewScreen();
+              return HomeScreen();
             }
           }
         },

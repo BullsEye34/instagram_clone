@@ -30,12 +30,6 @@ class _RegisterState extends State<Register> {
               'email': _email.text,
               'phone': _phone.text
             });
-        /*add({
-          'name': _name.text,
-          'password': _pwd.text,
-          'email': _email.text,
-          'phone': _phone.text
-        });*/
         user.sendEmailVerification();
         _navigateToNextScreen(context, maain());
       }

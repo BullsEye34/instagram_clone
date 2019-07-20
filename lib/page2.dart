@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class page2 extends StatefulWidget {
+  const page2({Key key}) : super(key: key);
   @override
   _page2State createState() => _page2State();
 }
@@ -49,12 +50,7 @@ class _page2State extends State<page2> {
                 'date': DateTime.now(),
                 'Description': description,
               });
-          /*add({
-          'name': _name.text,
-          'password': _pwd.text,
-          'email': _email.text,
-          'phone': _phone.text
-        });*/
+
         }
         catch (e) {
           print(e);
@@ -85,7 +81,7 @@ class _page2State extends State<page2> {
 
             ),
 
-            child: (_file!=null)?Image.file(_file):Image.asset('images/untitled.png'),
+            child: (_file!=null)?Image.file(_file):Image.asset('images/instagram.png'),
           ),
           
           OutlineButton(
