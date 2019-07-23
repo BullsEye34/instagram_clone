@@ -8,9 +8,16 @@ class page3 extends StatefulWidget {
 
 class _page3State extends State<page3> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(DateTime.now().toIso8601String());
+  }
+  @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.red,
+
     );
   }
 }

@@ -43,7 +43,7 @@ class _page2State extends State<page2> {
               .currentUser();
 
           await Firestore.instance.collection('Posts')
-              .document(user.uid)
+              .document(user.uid).collection('Posts').document(DateTime.now().toIso8601String())
               .setData(
               {
                 'Image': lin,

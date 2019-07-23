@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:image_picker/image_picker.dart';
 
 class editProfile extends StatefulWidget {
@@ -12,6 +13,19 @@ class editProfile extends StatefulWidget {
 }
 
 class _editProfileState extends State<editProfile> {
+  TextEditingController _nameCon;
+  @override
+  void yourFunction(context){
+    _nameCon.text="Helooooo";
+    _nameCon.value = TextEditingController.fromValue(new TextEditingValue(text: "My String")).value;
+  }
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (SchedulerBinding.instance.schedulerPhase == SchedulerPhase.persistentCallbacks) {
+      SchedulerBinding.instance.addPostFrameCallback((_) => yourFunction(context));
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -65,6 +79,10 @@ class _editProfileState extends State<editProfile> {
                       getIm();
                     },
                     child: Text("Change Image"),
+                  ),
+                  TextField(
+                    controller: _nameCon,
+
                   ),
                 ],
               ),
