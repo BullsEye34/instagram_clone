@@ -1,6 +1,7 @@
 # instagram
 
-A new Flutter application.
+A new Flutter application, an Instagram Clone using Flutter.
+This project is developed under the Guidance and Supervision of <b>Kootumb Multimedia.</b>
 
 ## Getting Started
 
