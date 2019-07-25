@@ -16,6 +16,7 @@ class page2 extends StatefulWidget {
 class _page2State extends State<page2> {
   File _file;
   var lin;
+  var link;
   TextEditingController _desc = new TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -30,12 +31,18 @@ class _page2State extends State<page2> {
     Future up() async {
       if (_file != null) {
         String FileName = basename(_file.path);
-        StorageReference refer = FirebaseStorage.instance.ref().child(FileName);
-        StorageUploadTask upload = refer.putFile(_file);
+        StorageReference ref = FirebaseStorage.instance.ref().child(FileName);
+        StorageUploadTask upload = ref.putFile(_file);
         StorageTaskSnapshot snap = await upload.onComplete;
-        var _lin = refer.getDownloadURL().toString();
+
+        var dowurl = await (await upload.onComplete).ref.getDownloadURL();
+
+        setState(() {
+          link = dowurl.toString();
+        });
 
         String description = _desc.text;
+
 
 
         try {
@@ -46,18 +53,16 @@ class _page2State extends State<page2> {
               .document(user.uid).collection('Posts').document(DateTime.now().toIso8601String())
               .setData(
               {
-                'Image': lin,
+                'Image': link,
                 'date': DateTime.now(),
                 'Description': description,
               });
 
         }
         catch (e) {
+          print("Errorrrrrrrrrrrr:::::::::::::::::::::::::::::");
           print(e);
         }
-        setState(() {
-          lin = _lin;
-        });
 
         setState(() {
           Scaffold.of(context).showSnackBar(
