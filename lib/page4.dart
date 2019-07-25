@@ -13,8 +13,10 @@ class page4 extends StatefulWidget {
 class _page4State extends State<page4> {
   var userr;
   var userrr;
+  var _imageUrl;
   var _interactionCount;
   var num;
+  var biooo;
 
   Widget getUserr() {
     getUser();
@@ -37,6 +39,8 @@ class _page4State extends State<page4> {
       // use ds as a snapshot
       setState(() {
         userrr = ds['name'];
+        biooo = ds['bio'];
+        _imageUrl = ds['Image'];
       });
     });
 
@@ -122,8 +126,9 @@ class _page4State extends State<page4> {
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                                image: AssetImage('images/untitled.png'),
-                                fit: BoxFit.fill))),
+                                image: //NetworkImage(_imageUrl),
+                                (_imageUrl!=null)?NetworkImage(_imageUrl):AssetImage('images/instgram.png'),
+                                fit: BoxFit.cover))),
                   ),
                   Wrap(
                     children: <Widget>[
@@ -182,6 +187,34 @@ class _page4State extends State<page4> {
                 ],
               ),
             ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 30.0,right: 30.0,top: 10.0),
+                  child: (userrr!=null)?Text(userrr, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),):Text("Name"),
+                ),
+              ],
+            ),
+            //Text(userrr, style: TextStyle(fontWeight: FontWeight.bold),),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Flexible(
+                  child: Container(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 30, right: 30.0, top: 15.0),
+                      child: (biooo!=null)?Text(biooo, style: TextStyle(fontSize: 15.0),):Text("Bio"),
+                      //Text(biooo, style: TextStyle(fontSize: 15.0), overflow: TextOverflow.clip,),
+                    ),
+                  ),
+                ),
+
+              ],
+            ),
+
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: ButtonTheme(
@@ -199,6 +232,19 @@ class _page4State extends State<page4> {
                 ),
               ),
             ),
+
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Container(
+                height: 1.5,
+                color: Colors.grey[200],
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text('Posts', style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),),
+            )
           ],
         ),
       ),
